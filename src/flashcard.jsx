@@ -9,12 +9,12 @@ class Flashcard extends React.Component {
     this.createAnswers = this.createAnswers.bind(this);
   }
 
-  createAnswer = answer => (
-    <div>
+  createAnswer = (answer, onClick) => (
+    <button type='button' onClick={onClick}>
       <p>
         { answer }
       </p>
-    </div>
+    </button>
   )
 
   createAnswers = answers => (
@@ -23,11 +23,18 @@ class Flashcard extends React.Component {
 
   render() {
     const { props } = this;
-    const { question, answers } = props;
+    const {
+      question,
+      answers,
+      onClick,
+    } = props;
+
+    const clickWrapper = (evt) => onClick(evt.target.value);
+
     return (
       <div>
         <h2>{ question }</h2>
-        {this.createAnswers(answers)}
+      {this.createAnswers(answers)}
       </div>
     );
   }
@@ -36,6 +43,7 @@ class Flashcard extends React.Component {
 Flashcard.propTypes = {
   question: PropTypes.string,
   answers: PropTypes.array,
+  onClick: PropTypes.func,
 };
 
 Flashcard.defaultProps = {
@@ -44,6 +52,9 @@ Flashcard.defaultProps = {
     'Answer A Default',
     'Answer B Default',
   ],
+  onClick: (...args) => {
+    console.log('button.defaultProps.onClick ', args);
+  },
 };
 
 export default Flashcard;

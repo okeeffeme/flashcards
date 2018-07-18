@@ -7,5 +7,5 @@ import Flashcard from './flashcard';
 
 storiesOf('Flashcard', module)
   .add('hello', () => (
-    <Flashcard />
+    <Flashcard question='hello' answers={['a','b','c']} />
   ));
