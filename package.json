@@ -1,0 +1,26 @@
+{
+ "name": "@okeeffeme/flashcards",
+ "version": "0.1.0",
+ "private": true,
+ "devDependencies": {
+  "@storybook/addons": "^3.4.8",
+  "@storybook/react": "^3.4.8",
+  "babel-core": "^6.26.3",
+  "babel-eslint": "^8.2.6",
+  "babel-loader": "^7.1.5",
+  "babel-preset-react": "^6.24.1",
+  "eslint": "^5.1.0",
+  "eslint-config-airbnb": "^17.0.0",
+  "eslint-plugin-import": "^2.13.0",
+  "eslint-plugin-jsx-a11y": "^6.1.1",
+  "eslint-plugin-react": "^7.10.0"
+ },
+ "dependencies": {
+  "prop-types": "^15.6.2",
+  "react": "^16.4.1",
+  "react-dom": "^16.4.1"
+},
+ "scripts": {
+   "storybook": "start-storybook -p 9001 -c .storybook"
+ }
+}
