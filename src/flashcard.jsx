@@ -8,28 +8,28 @@ class Flashcard extends React.Component {
     super(props);
     this.state = {};
     this.createAnswer = this.createAnswer.bind(this);
-    this.createAnswers = this.createAnswers.bind(this);
+    this.createOptions = this.createOptions.bind(this);
   }
 
   createAnswer = answer => (
     <Button name={answer} label={answer} />
   )
 
-  createAnswers = answers => (
-    answers.map(this.createAnswer)
+  createOptions = options => (
+    options.map(this.createAnswer)
   )
 
   render() {
     const { props } = this;
     const {
       question,
-      answers,
+      options,
     } = props;
 
     return (
       <div>
         <h2>{ question }</h2>
-        {this.createAnswers(answers)}
+        {this.createOptions(options)}
       </div>
     );
   }
@@ -37,15 +37,16 @@ class Flashcard extends React.Component {
 
 Flashcard.propTypes = {
   question: PropTypes.string,
-  answers: PropTypes.array,
+  options: PropTypes.array,
+
 };
 
 Flashcard.defaultProps = {
   question: 'Question Default',
-  answers: [
-    'Answer A Default',
-    'Answer B Default',
-  ],
+  options: {
+    q1: 'Answer A Default',
+    q2: 'Answer B Default',
+  },
 };
 
 export default Flashcard;
