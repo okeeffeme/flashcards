@@ -9,15 +9,26 @@ class Flashcard extends React.Component {
     this.state = {};
     this.createAnswer = this.createAnswer.bind(this);
     this.createOptions = this.createOptions.bind(this);
+    this.validateAnswer = this.validateAnswer.bind(this);
   }
 
   createAnswer = answer => (
-    <Button name={answer} label={answer} />
+    <Button name={answer} label={answer} onClick={this.validateAnswer} />
   )
 
   createOptions = options => (
     options.map(this.createAnswer)
   )
+
+  validateAnswer(selection) {
+    const { answer } = this.props;
+    if (selection === answer) {
+      alert("YES");
+    } else {
+      alert("NO");
+    }
+  }
+
 
   render() {
     const { props } = this;
@@ -37,16 +48,17 @@ class Flashcard extends React.Component {
 
 Flashcard.propTypes = {
   question: PropTypes.string,
-  options: PropTypes.array,
-
+  options: PropTypes.arrayOf(PropTypes.string),
+  answer: PropTypes.string,
 };
 
 Flashcard.defaultProps = {
   question: 'Question Default',
-  options: {
-    q1: 'Answer A Default',
-    q2: 'Answer B Default',
-  },
+  options: [
+    'Answer A Default',
+    'Answer B Default',
+  ],
+  answer: 'Answer A Default',
 };
 
 export default Flashcard;
