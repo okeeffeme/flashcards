@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Button from './button';
+
 class Flashcard extends React.Component {
   constructor(props) {
     super(props);
@@ -9,12 +11,8 @@ class Flashcard extends React.Component {
     this.createAnswers = this.createAnswers.bind(this);
   }
 
-  createAnswer = (answer, onClick) => (
-    <button type='button' onClick={onClick}>
-      <p>
-        { answer }
-      </p>
-    </button>
+  createAnswer = answer => (
+    <Button name={answer} label={answer} />
   )
 
   createAnswers = answers => (
@@ -26,15 +24,12 @@ class Flashcard extends React.Component {
     const {
       question,
       answers,
-      onClick,
     } = props;
-
-    const clickWrapper = (evt) => onClick(evt.target.value);
 
     return (
       <div>
         <h2>{ question }</h2>
-      {this.createAnswers(answers)}
+        {this.createAnswers(answers)}
       </div>
     );
   }
@@ -43,7 +38,6 @@ class Flashcard extends React.Component {
 Flashcard.propTypes = {
   question: PropTypes.string,
   answers: PropTypes.array,
-  onClick: PropTypes.func,
 };
 
 Flashcard.defaultProps = {
@@ -52,9 +46,6 @@ Flashcard.defaultProps = {
     'Answer A Default',
     'Answer B Default',
   ],
-  onClick: (...args) => {
-    console.log('button.defaultProps.onClick ', args);
-  },
 };
 
 export default Flashcard;

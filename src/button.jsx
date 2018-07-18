@@ -13,13 +13,14 @@ class Button extends React.Component {
       label,
       type,
       key,
+      name,
       onClick,
     } = props;
 
-    const clickWrapper = (evt) => onClick(evt.target.value);
+    const clickWrapper = (evt) => onClick(evt.target.name);
 
     return (
-      <button type={type} onClick={onClick}>
+      <button type={type} onClick={clickWrapper} name={name}>
         <p>{ label }</p>
     </button>
     );
@@ -28,6 +29,7 @@ class Button extends React.Component {
 
 Button.propTypes = {
   label: PropTypes.string,
+  name: PropTypes.string,
   type: PropTypes.string,
   key: PropTypes.string,
   onClick: PropTypes.func,
@@ -35,6 +37,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   label: 'Default Label',
+  name: 'Default Name',
   type: 'button',
   key: 'Default Key',
   onClick: (...args) => {
