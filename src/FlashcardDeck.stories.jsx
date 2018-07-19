@@ -3,9 +3,9 @@ import { storiesOf } from '@storybook/react';
 
 import { action } from '@storybook/addon-actions';
 
-import Flashcard from './Flashcard';
+import FlashcardDeck from './FlashcardDeck';
 
-storiesOf('Flashcard', module)
+storiesOf('Flashcard Deck', module)
   .add('hello', () => (
-    <Flashcard input={{ question: 'hello', options: ['a', 'b', 'c'], answer: 'a' }} />
+    <FlashcardDeck />
   ));

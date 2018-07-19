@@ -3,7 +3,7 @@ import {storiesOf} from '@storybook/react';
 
 import {action} from '@storybook/addon-actions';
 
-import Button from './button';
+import Button from './Button';
 
 storiesOf('Button', module)
   .add('default', () => (

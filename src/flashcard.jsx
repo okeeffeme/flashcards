@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Button from './button';
+import Button from './Button';
 
 class Flashcard extends React.Component {
   constructor(props) {
@@ -21,21 +21,21 @@ class Flashcard extends React.Component {
   )
 
   validateAnswer(selection) {
-    const { answer } = this.props;
+    const { answer } = this.props.input;
     if (selection === answer) {
-      alert("YES");
+      console.log(selection, answer);
     } else {
-      alert("NO");
+      console.log(selection, answer);
     }
   }
 
 
   render() {
-    const { props } = this;
+    const { input } = this.props;
     const {
       question,
       options,
-    } = props;
+    } = input;
 
     return (
       <div>
@@ -47,18 +47,22 @@ class Flashcard extends React.Component {
 }
 
 Flashcard.propTypes = {
-  question: PropTypes.string,
-  options: PropTypes.arrayOf(PropTypes.string),
-  answer: PropTypes.string,
+  input: PropTypes.shape({
+    question: PropTypes.string,
+    options: PropTypes.arrayOf(PropTypes.string),
+    answer: PropTypes.string,
+  }),
 };
 
 Flashcard.defaultProps = {
-  question: 'Question Default',
-  options: [
-    'Answer A Default',
-    'Answer B Default',
-  ],
-  answer: 'Answer A Default',
+  input: {
+    question: 'Question Default',
+    options: [
+      'Answer A Default',
+      'Answer B Default',
+    ],
+    answer: 'Answer A Default',
+  },
 };
 
 export default Flashcard;
