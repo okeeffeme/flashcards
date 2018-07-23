@@ -22,11 +22,7 @@ class Flashcard extends React.Component {
 
   validateAnswer(selection) {
     const { answer } = this.props.input;
-    if (selection === answer) {
-      console.log(selection, answer);
-    } else {
-      console.log(selection, answer);
-    }
+    return (selection === answer);
   }
 
 
