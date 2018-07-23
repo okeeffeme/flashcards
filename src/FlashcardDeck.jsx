@@ -5,6 +5,18 @@ import Flashcard from './Flashcard';
 
 /* eslint-disable-next-line react/prefer-stateless-function */
 class FlashcardDeck extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      index: 1,
+    };
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(nextCard) {
+    this.setState({ index: nextCard });
+  }
+
   createCard = input => (
     <Flashcard input={input} />
   )
@@ -14,10 +26,11 @@ class FlashcardDeck extends React.Component {
   )
 
   render() {
+    const { index } = this.state;
     const { deck } = this.props;
     return (
       <div>
-        {this.createCards(deck)}
+        {this.createCard(deck[index])}
       </div>
     );
   }
