@@ -21,8 +21,14 @@ class Flashcard extends React.Component {
   )
 
   validateAnswer(selection) {
-    const { answer } = this.props.input;
-    return (selection === answer);
+    const { onCorrect, onIncorrect, input } = this.props;
+    const { answer } = input;
+
+    if (selection === answer) {
+      onCorrect();
+    } else {
+      onIncorrect();
+    }
   }
 
 
@@ -48,6 +54,8 @@ Flashcard.propTypes = {
     options: PropTypes.arrayOf(PropTypes.string),
     answer: PropTypes.string,
   }),
+  onCorrect: PropTypes.func,
+  onIncorrect: PropTypes.func,
 };
 
 Flashcard.defaultProps = {

@@ -13,8 +13,18 @@ class FlashcardDeck extends React.Component {
       index: 0,
     };
     // this.onChange = this.onChange.bind(this);
+    this.onCorrect = this.onCorrect.bind(this);
+    this.onIncorrect = this.onIncorrect.bind(this);
     this.getNextCard = this.getNextCard.bind(this);
     this.testButton = this.testButton.bind(this);
+  }
+
+  onCorrect() {
+    console.log('true');
+  }
+
+  onIncorrect() {
+    console.log('false');
   }
 
   // onChange() {
@@ -22,22 +32,27 @@ class FlashcardDeck extends React.Component {
   //   this.setState({ index: i + 1 });
   // }
 
-  getNextCard(deck) {
+  getNextCard() {
     const { index } = this.state;
+    const { deck } = this.props;
     let value = index;
     if (index < deck.length - 1) {
-      console.log(index, deck.length);
       value = index + 1;
     }
     return value;
   }
 
   createCard = input => (
-    <Flashcard input={input} />
+    <Flashcard
+      input={input}
+      onCorrect={this.onCorrect}
+      onIncorrect={this.onIncorrect}
+    />
   )
 
   testButton() {
-    this.setState({ index: this.getNextCard(this.props.deck) });
+    const { deck } = this.props;
+    this.setState({ index: this.getNextCard(deck) });
   }
 
   // createCards = deck => (
