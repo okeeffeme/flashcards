@@ -11,26 +11,31 @@ class FlashcardDeck extends React.Component {
     super(props);
     this.state = {
       index: 0,
+      correct: 0,
+      incorrect: 0,
     };
     // this.onChange = this.onChange.bind(this);
     this.onCorrect = this.onCorrect.bind(this);
     this.onIncorrect = this.onIncorrect.bind(this);
     this.getNextCard = this.getNextCard.bind(this);
-    this.testButton = this.testButton.bind(this);
+    // this.testButton = this.testButton.bind(this);
   }
 
   onCorrect() {
-    console.log('true');
+    const { index, correct } = this.state;
+    const { deck } = this.props;
+    if (index < deck.length) {
+      this.setState({ index: index + 1, correct: correct + 1 });
+    }
   }
 
   onIncorrect() {
-    console.log('false');
+    const { index, incorrect } = this.state;
+    const { deck } = this.props;
+    if (index < deck.length) {
+      this.setState({ index: index + 1, incorrect: incorrect + 1 });
+    }
   }
-
-  // onChange() {
-  //   const { i } = this.state.index;
-  //   this.setState({ index: i + 1 });
-  // }
 
   getNextCard() {
     const { index } = this.state;
@@ -50,22 +55,14 @@ class FlashcardDeck extends React.Component {
     />
   )
 
-  testButton() {
-    const { deck } = this.props;
-    this.setState({ index: this.getNextCard(deck) });
-  }
-
-  // createCards = deck => (
-  //   deck.map(this.createCard)
-  // )
-
   render() {
-    const { index } = this.state;
+    const { index, correct, incorrect } = this.state;
     const { deck } = this.props;
     return (
       <div>
+        <h2>Correct: {correct}</h2>
+        <h2>Incorrect: {incorrect}</h2>
         {this.createCard(deck[index])}
-        <Button name='test' label='test' onClick={this.testButton} />
       </div>
     );
   }
@@ -80,26 +77,26 @@ FlashcardDeck.defaultProps = {
     {
       question: 'Question 1 Default Deck',
       options: [
-        'Answer A Default Deck',
-        'Answer B Default Deck',
+        'Answer Correct 1 Default Deck',
+        'Answer Incorrect 1 Default Deck',
       ],
-      answer: 'Answer A Default Deck',
+      answer: 'Answer Correct Default Deck',
     },
     {
       question: 'Question 2 Default Deck',
       options: [
-        'Answer C Default Deck',
-        'Answer D Default Deck',
+				'Answer Correct 2 Default Deck',
+        'Answer Incorrect 2 Default Deck',
       ],
-      answer: 'Answer C Default Deck',
+      answer: 'Answer Correct Default Deck',
     },
     {
       question: 'Question 3 Default Deck',
       options: [
-        'Answer E Default Deck',
-        'Answer F Default Deck',
+				'Answer Correct 3 Default Deck',
+        'Answer Incorrect 3 Default Deck',
       ],
-      answer: 'Answer E Default Deck',
+      answer: 'Answer Correct Default Deck',
     },
   ],
 };
